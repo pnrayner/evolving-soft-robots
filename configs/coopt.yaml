@@ -18,9 +18,9 @@ gin_bindings:
     sofa_make_env.design_space: DiskWithLegsSixLegsDiscreteOpenLoopDesignSpace
     sofa_make_env.with_gui: False
     sofa_make_env.reduction: '09-29_tolm_0.0032_tolg_0.0010'
-    sofa_make_env.friction_coef: '@domainRND()'
-    sofa_make_env.ym: 1160
-    sofa_make_env.paper_ym: 2320
+    sofa_make_env.friction_coef: 1.2
+    sofa_make_env.ym: bodymaterialdomainRND()
+    sofa_make_env.paper_ym: papermaterialdomainRND()
     sofa_make_env.max_steps: 2000
     sofa_make_env.steps_per_action: 100
 

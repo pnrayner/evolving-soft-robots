@@ -18,6 +18,17 @@ def domainRND():
     print(coef)
     # coef = np.random.uniform(low = 0.65, high = 1.3, size = None)  
     return coef
+def bodymaterialdomainRND():
+    coef = random.randint(840,1300)
+    print(coef)
+    # coef = np.random.uniform(low = 0.65, high = 1.3, size = None)
+    return coef
+
+def papermaterialdomainRND():
+    coef = random.randint(1500, 3000)
+    print(coef)
+    # coef = np.random.uniform(low = 0.65, high = 1.3, size = None)
+    return coef
 
 @gin.configurable(blacklist=['nenv'])
 def sofa_make_env(scene_id,
