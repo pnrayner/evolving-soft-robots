@@ -134,6 +134,20 @@ class DiskWithLegsSixLegsDiscreteDesignSpace(DiskWithLegsDiscreteDesignSpace):
             return nlegs <= 6
         return list(filter(_remove_design, designs))
 
+class DiskWithLegsThreeLegsDiscreteDesignSpace(DiskWithLegsDiscreteDesignSpace):
+    def __init__(self, ym, paper_ym):
+        DiskWithLegsDiscreteDesignSpace.__init__(self, ym, paper_ym)
+        self._designs = self._filter_designs(self._designs)
+        self.parameter_space = gym.spaces.Discrete(n=len(self._designs))
+
+    def _filter_designs(self, designs):
+        def _remove_design(design):
+            nlegs = 0
+            for d in design:
+                if d != 0:
+                    nlegs += 1
+            return nlegs <= 3
+        return list(filter(_remove_design, designs))
 
 class OpenLoopDesignSpace(DesignSpace):
 
@@ -183,3 +197,13 @@ class DiskWithLegsSixLegsDiscreteOpenLoopDesignSpace(OpenLoopDesignSpace, DiskWi
     def observation(self, obs):
         obs = DiskWithLegsSixLegsDiscreteDesignSpace.observation(self, obs)
         return OpenLoopDesignSpace.observation(self, obs)
+    
+class DiskWithLegsThreeLegsDiscreteOpenLoopDesignSpace(OpenLoopDesignSpace, DiskWithLegsThreeLegsDiscreteDesignSpace):
+    observation_space = make_ob_space(NLEGS, True)
+    def __init__(self, *args, **kwargs):
+        OpenLoopDesignSpace.__init__(self)
+        DiskWithLegsThreeLegsDiscreteDesignSpace.__init__(self, *args, **kwargs)
+
+    def observation(self, obs):
+        obs = DiskWithLegsThreeLegsDiscreteDesignSpace.observation(self, obs)
+        return OpenLoopDesignSpace.observation(self, obs)    

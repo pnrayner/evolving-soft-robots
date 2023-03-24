@@ -37,8 +37,8 @@ CoOpt.steps_per_design = 20
 CoOpt.batch_size = 96
 CoOpt.update_period = 96
 
-DiscreteDesignOptimizer.ent_decay_start = 200000
-DiscreteDesignOptimizer.ent_decay_end = 950000
+DiscreteDesignOptimizer.ent_decay_start = 60000
+DiscreteDesignOptimizer.ent_decay_end = 285000
 
 Checkpointer.ckpt_period = 10000
 
